@@ -11,16 +11,16 @@ Important metrics including the Radiance Multiplier, Radiance Add, and K constan
 ![Radiance Multiplier, Radiance Add, and K Constant values used when converting thermal imagery to Fahrenheit](thermal_values.jpg)
 
 After this analysis is conducted, we have acquired the land surface temperature in Fahrenheit measure. Below are the measured findings of the average land surface temperature by census tract within Wayne County. The average land surface temperature for each census tract was calculated using Zonal Statistics as Table. This tool was also used for the NLCD rasters to calculate their averages (with the exception of land use, where majority was calculated instead).
-
+![Average Land Surface Temperature by Census Tract Level](land_surface_temperature.jpg)
 ## Heat Risk Index Analysis
 In addition to determining land surface temperature, I also conducted an analysis on which tracts were at higher risk of UHI by assessing land use and demographic data. Using 8 demographic columns and the 3 raster datasets collected from NLCD, I constructed a heat risk index for my analysis.
-
+![Construction of Heat Risk Index by variable, weighting, and category](heat_risk_index.jpg)
 Using ArcGIS Pro, I created new columns that contained values from 1 to 5, by splitting the tracts into 5-class quantiles for each column in the index. Values under the lowest quantile were given a value of 1, while values with the highest quantile were given a value of 5. An exception was used for white population, bachelor’s degree, median income, and TCC cover, where the lowest quantile was instead given a value of 5 and the highest given a value of 1.
 The weight distribution within each category was determined subjectively. Population Density was given a higher weighting than Total Population because higher density frequently attributed to higher Land Surface Temperatures. Under susceptibility, bachelor’s degree and median income were given higher weighting since poorer communities frequently have less leverage in deciding which communities they live in and can be driven out by gentrification efforts. For hazard, tree canopy and impervious surface covers were given higher weightings due to the use of tree canopies to reduce urban temperatures and impervious surfaces like parking lots absorbing heat. 
 After each column was assigned a value between 1 and 5, the values were then calculated by its respective weight and then divided by the number of variables present in the section (Exposure with 2, Susceptibility with 6, Hazard with 4). Below are the 3 maps indicating the risk of each census tract by the 3 categories.
-
+![Most vulnerable tracts based on the Exposure Index](exposure_index.jpg) ![Most vulnerable tracts based on the Susceptibility Index](susceptibility_index.jpg) ![Most vulnerable tracts based on the Hazard Index](hazard_index.jpg)
 Finally, the risk score from each category were multiplied by the final weighting of 0.333 (0.334 for hazard) and divided by 3 to determine the final heat risk index score.
-
+![Census tracts most vulnerable to UHI based on the constructed Heat Risk Index](final_heat_risk_map.jpg)
 
 
 
