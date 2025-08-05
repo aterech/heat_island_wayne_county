@@ -8,7 +8,7 @@ The format of the pixel values from the thermal imagery rasters are not in Fahre
 •	Kelvin = K2 / Ln(K1/TOAr + 1)
 •	Fahrenheit = 1.8 * (Kelvin – 273.15) + 32
 Important metrics including the Radiance Multiplier, Radiance Add, and K constants can be determined from the below chart showing the necessary values to plug in to the 3 formulas based on which band the raster is. The site containing the chart and the applied formulas can be found here: https://www.esri.com/arcgis-blog/products/product/analytics/deriving-temperature-from-landsat-8-thermal-bands-tirs.
-
+![Radiance Multiplier, Radiance Add, and K Constant values used when converting thermal imagery to Fahrenheit]thermal_values.jpg!
 After this analysis is conducted, we have acquired the land surface temperature in Fahrenheit measure. Below are the measured findings of the average land surface temperature by census tract within Wayne County. The average land surface temperature for each census tract was calculated using Zonal Statistics as Table. This tool was also used for the NLCD rasters to calculate their averages (with the exception of land use, where majority was calculated instead).
 
 ## Heat Risk Index Analysis
@@ -19,4 +19,5 @@ The weight distribution within each category was determined subjectively. Popula
 After each column was assigned a value between 1 and 5, the values were then calculated by its respective weight and then divided by the number of variables present in the section (Exposure with 2, Susceptibility with 6, Hazard with 4). Below are the 3 maps indicating the risk of each census tract by the 3 categories.
 
 Finally, the risk score from each category were multiplied by the final weighting of 0.333 (0.334 for hazard) and divided by 3 to determine the final heat risk index score.
+
 
