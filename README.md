@@ -4,9 +4,11 @@ This blog post will focus on a heat vulnerability study I conducted within Wayne
 The data used in the study were acquired from Landsat, NLCD, and the US Census Bureau. From Landsat, satellite imagery consisting of thermal bands 10 and 11 were acquired to determine the Land Surface Temperature within Wayne County. For this study, thermal imagery taken on June 17, 2021 was acquired. From the NLCD, 3 raster datasets consisting of land use cover, tree canopy cover, and impervious surface cover were acquired. From the US Census Bureau, 8 demographic datasets were acquired and will be used to construct the heat risk index later in the analysis.
 ## Data Conversion
 The format of the pixel values from the thermal imagery rasters are not in Fahrenheit, hence they need to be converted into Fahrenheit. This is done by running 3 formulas that convert the raw pixel values into Radiance, then Kelvin, and then Fahrenheit:
+
 - TOAr  = (Radiance Multiplier * raster) + Radiance Add
 - Kelvin = K2 / Ln(K1/TOAr + 1)
 - Fahrenheit = 1.8 * (Kelvin – 273.15) + 32
+
 Important metrics including the Radiance Multiplier, Radiance Add, and K constants can be determined from the below chart showing the necessary values to plug in to the 3 formulas based on which band the raster is. The site containing the chart and the applied formulas can be found here: https://www.esri.com/arcgis-blog/products/product/analytics/deriving-temperature-from-landsat-8-thermal-bands-tirs.
 
 ![Radiance Multiplier, Radiance Add, and K Constant values used when converting thermal imagery to Fahrenheit](thermal_values.jpg)
@@ -29,6 +31,7 @@ After each column was assigned a value between 1 and 5, the values were then cal
 Finally, the risk score from each category were multiplied by the final weighting of 0.333 (0.334 for hazard) and divided by 3 to determine the final heat risk index score.
 
 ![Census tracts most vulnerable to UHI based on the constructed Heat Risk Index](final_heat_risk_map.jpg)
+
 
 
 
